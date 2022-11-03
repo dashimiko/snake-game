@@ -1,10 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Trispace:wght@700&display=swap');
 
 $app-background-color: #0b0c0c;
+$app-neonGreen-color: #3FFE1A;
 
 * {
   margin: 0;
   padding: 0;
+}
+
+.no-cursor,
+.no-cursor * {
+  cursor: none;
 }
 
 .App {
@@ -19,13 +25,14 @@ $app-background-color: #0b0c0c;
   justify-content: center;
   align-items: center;
   height: 100%;
+  flex-direction: column;
 
   .glitch {
     position: relative;
     color: #fff;
     font-family: 'Trispace', sans-serif;
     font-weight: 600;
-    font-size: 100px;
+    font-size: 80px;
     padding: 30px;
 
     &:before,
@@ -40,17 +47,34 @@ $app-background-color: #0b0c0c;
     
     &:before {
       left: -3px;
-      text-shadow: -3px 0 red;
+      text-shadow: -3px 0 $app-neonGreen-color;
       animation: glitch-before 2s linear 0s infinite alternate;
     }
     
     &:after {
       left: -3px;
-      text-shadow: -3px 0 blue;
+      text-shadow: -3px 0 red;
       animation: glitch-after 2s linear 0s infinite alternate;
     }
   }
+  .start_button {
+    background-color: $app-neonGreen-color;
+    color: black;
+    width: 120px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Trispace', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    transition: all .1s linear;
+  }
+  .start_button:hover {
+    box-shadow: 0px 4px 20px rgba(252, 228, 8, 0.4);
+  }
 }
+
+
 
 @keyframes glitch-before {
   $steps: 20;
@@ -60,11 +84,21 @@ $app-background-color: #0b0c0c;
     }
   }
 }
+
 @keyframes glitch-after {
   $steps: 20;
   @for $i from 0 through $steps {
     #{percentage($i*(1/$steps))} {
       clip: rect(random(150) + px, 780px, random(150) + px, 30px);
+    }
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .App-header {
+    .glitch {
+      font-weight: 400;
+      font-size: 50px;
     }
   }
 }
