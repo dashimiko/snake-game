@@ -3,23 +3,13 @@
 $app-background-color: #0b0c0c;
 $app-neonGreen-color: #3FFE1A;
 
-* {
-  margin: 0;
-  padding: 0;
-}
-
-.no-cursor,
-.no-cursor * {
-  cursor: none;
-}
-
 .App {
   background-color: $app-background-color;
   width: 100vw;
   height: 100vh;
 }
 
-.App-header {
+.App_main {
   text-align: center;
   display: flex;
   justify-content: center;
@@ -44,13 +34,13 @@ $app-neonGreen-color: #3FFE1A;
       overflow: hidden;
       padding: 30px;
     }
-    
+
     &:before {
       left: -3px;
       text-shadow: -3px 0 $app-neonGreen-color;
       animation: glitch-before 2s linear 0s infinite alternate;
     }
-    
+
     &:after {
       left: -3px;
       text-shadow: -3px 0 red;
@@ -74,8 +64,6 @@ $app-neonGreen-color: #3FFE1A;
   }
 }
 
-
-
 @keyframes glitch-before {
   $steps: 20;
   @for $i from 0 through $steps {
@@ -95,7 +83,7 @@ $app-neonGreen-color: #3FFE1A;
 }
 
 @media screen and (max-width: 580px) {
-  .App-header {
+  .App_main {
     .glitch {
       font-weight: 400;
       font-size: 50px;
