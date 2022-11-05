@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 function Main() {
 
@@ -7,9 +8,11 @@ function Main() {
       <p className="glitch">
         Snake Game
       </p>
-      <button className="start_button">
+      <Link to='/game' className="start_button">
+        <p className='start_button_text'>
         Start
-      </button>
+        </p>
+      </Link>
     </main>
   );
 }
