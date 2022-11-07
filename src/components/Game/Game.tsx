@@ -1,4 +1,4 @@
-import React, {useRef, useEffect, useState} from 'react';
+import {useRef, useEffect, useState} from 'react';
 
 const Game = () => {
 
@@ -11,10 +11,18 @@ const Game = () => {
   const [fieldCellX, setFieldCellX] = useState(15);
   const [fieldCellY, setFieldCellY] = useState(0);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const [snakeBody, setSnakeBody] = useState([{x: 0,y: 0}]);
+
+  //eslint-disable-next-line react-hooks/exhaustive-deps
   function moveSnake() {
+
     setPositionX(positionX + fieldCellX);
     setPositionY(positionY + fieldCellY);
+
+    snakeBody.unshift({x:positionX, y:positionY});
+    if (snakeBody.length > 3) {
+      snakeBody.pop();
+    }
 
     if (positionX > 400) {
       setPositionX(0);
@@ -30,7 +38,7 @@ const Game = () => {
   }
 
   useEffect(() => {
-    const interval = setInterval(moveSnake, 300);
+    const interval = setInterval(moveSnake, 100);
     return () => clearInterval(interval);
   }, [moveSnake]);
 
@@ -40,9 +48,10 @@ const Game = () => {
       const ctx = canvasCtxRef.current;
       ctx!.clearRect(0, 0, window.innerWidth, window.innerHeight);
       ctx!.fillStyle = `#3FFE1A`;
-      ctx!.fillRect(positionX, positionY, 20, 20);
+      snakeBody.forEach(({x,y}) => ctx!.fillRect(x, y, 20, 20))
+      //ctx!.fillRect(positionX, positionY, 20, 20);
     }
-  }, [positionX, positionY]);
+  }, [positionX, positionY, snakeBody]);
 
 document.addEventListener('keydown', function(event) {
   if (event.code === "ArrowUp") {
