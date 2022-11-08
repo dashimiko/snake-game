@@ -13,17 +13,23 @@ const Game = () => {
 
   const [positionX, setPositionX] = useState(0);
   const [positionY, setPositionY] = useState(0);
-  const [fieldCellX, setFieldCellX] = useState(oneCellSize);
-  const [fieldCellY, setFieldCellY] = useState(0);
+  const [directionX, setDirectionX] = useState(oneCellSize);
+  const [directionY, setDirectionY] = useState(0);
 
   useEffect(() => {
 
     const interval = setInterval(function moveSnake() {
 
-      setPositionX(positionX + fieldCellX);
-      setPositionY(positionY + fieldCellY);
+      setPositionX(positionX + directionX);
+      setPositionY(positionY + directionY);
 
-      snake.unshift({x:positionX, y:positionY, maxLength: startSnakeLength});
+      snake.unshift({
+        x: positionX,
+        y: positionY,
+        directionX: directionX,
+        directionY: directionY,
+        maxLength: startSnakeLength,
+      })
 
       if (snake.length > startSnakeLength) {
         snake.pop();
@@ -42,7 +48,7 @@ const Game = () => {
 
     return () => clearInterval(interval);
 
-  }, [positionX, fieldCellX, positionY, fieldCellY]);
+  }, [positionX, directionX, positionY, directionY]);
 
   useEffect(() => {
     if (canvasRef.current) {
@@ -60,25 +66,25 @@ const Game = () => {
   }, [positionX, positionY]);
 
 document.addEventListener('keydown', function(event) {
-  if (event.code === "ArrowUp") {
-    setFieldCellY(-oneCellSize);
-    setFieldCellX(0);
+  if (event.code === "ArrowUp" && snake[0].directionY === 0) {
+    setDirectionY(-oneCellSize);
+    setDirectionX(0);
     console.log(snake)
   }
 
-  else if (event.code === "ArrowDown") {
-    setFieldCellY(oneCellSize);
-    setFieldCellX(0);
+  else if (event.code === "ArrowDown" && snake[0].directionY === 0) {
+    setDirectionY(oneCellSize);
+    setDirectionX(0);
   }
 
-  else if (event.code === "ArrowLeft") {
-    setFieldCellX(-oneCellSize);
-    setFieldCellY(0);
+  else if (event.code === "ArrowLeft" && snake[0].directionX === 0) {
+    setDirectionX(-oneCellSize);
+    setDirectionY(0);
   }
 
-  else if (event.code === "ArrowRight") {
-    setFieldCellX(oneCellSize);
-    setFieldCellY(0);
+  else if (event.code === "ArrowRight" && snake[0].directionX === 0) {
+    setDirectionX(oneCellSize);
+    setDirectionY(0);
   }
 });
 
