@@ -50,7 +50,12 @@ const Game = () => {
       const ctx = canvasCtxRef.current;
       ctx!.clearRect(0, 0, window.innerWidth, window.innerHeight);
       ctx!.fillStyle = `#3FFE1A`;
-      snake.forEach(({x,y}) => ctx!.fillRect(x, y, 20, 20));
+      ctx!.strokeStyle = `#0b0c0c`;
+      ctx!.lineWidth=2;
+      snake.forEach(function({x,y}) {
+        ctx!.fillRect(x, y, 15, 15);
+        ctx!.strokeRect(x, y, 15, 15);
+      });
     }
   }, [positionX, positionY]);
 
