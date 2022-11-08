@@ -1,4 +1,10 @@
 import {useRef, useEffect, useState} from 'react';
+import {
+  oneCellSize,
+  startSnakeLength,
+  gameZone,
+  startSnake,
+} from '../../utils/constants';
 
 const Game = () => {
 
@@ -7,11 +13,9 @@ const Game = () => {
 
   const [positionX, setPositionX] = useState(0);
   const [positionY, setPositionY] = useState(0);
-
-  const [fieldCellX, setFieldCellX] = useState(15);
+  const [fieldCellX, setFieldCellX] = useState(oneCellSize);
   const [fieldCellY, setFieldCellY] = useState(0);
-
-  const [snakeBody, setSnakeBody] = useState([{x: 0,y: 0}]);
+  const [snakeBody, setSnakeBody] = useState([startSnake]);
 
   //eslint-disable-next-line react-hooks/exhaustive-deps
   function moveSnake() {
@@ -19,21 +23,22 @@ const Game = () => {
     setPositionX(positionX + fieldCellX);
     setPositionY(positionY + fieldCellY);
 
-    snakeBody.unshift({x:positionX, y:positionY});
-    if (snakeBody.length > 3) {
+    snakeBody.unshift({x:positionX, y:positionY, maxLength: startSnakeLength});
+
+    if (snakeBody.length > startSnake.maxLength) {
       snakeBody.pop();
     }
 
-    if (positionX > 400) {
+    if (positionX > gameZone) {
       setPositionX(0);
     } else if (positionX < 0) {
-      setPositionX(400);
+      setPositionX(gameZone);
     }
 
-    if (positionY > 400) {
+    if (positionY > gameZone) {
       setPositionY(0);
     } else if (positionY < 0) {
-      setPositionY(400);
+      setPositionY(gameZone);
     }
   }
 
@@ -49,28 +54,27 @@ const Game = () => {
       ctx!.clearRect(0, 0, window.innerWidth, window.innerHeight);
       ctx!.fillStyle = `#3FFE1A`;
       snakeBody.forEach(({x,y}) => ctx!.fillRect(x, y, 20, 20))
-      //ctx!.fillRect(positionX, positionY, 20, 20);
     }
   }, [positionX, positionY, snakeBody]);
 
 document.addEventListener('keydown', function(event) {
   if (event.code === "ArrowUp") {
-    setFieldCellY(-15);
+    setFieldCellY(-oneCellSize);
     setFieldCellX(0);
   }
 
-  if (event.code === "ArrowDown") {
-    setFieldCellY(15);
+  else if (event.code === "ArrowDown") {
+    setFieldCellY(oneCellSize);
     setFieldCellX(0);
   }
 
-  if (event.code === "ArrowLeft") {
-    setFieldCellX(-15);
+  else if (event.code === "ArrowLeft") {
+    setFieldCellX(-oneCellSize);
     setFieldCellY(0);
   }
 
-  if (event.code === "ArrowRight") {
-    setFieldCellX(15);
+  else if (event.code === "ArrowRight") {
+    setFieldCellX(oneCellSize);
     setFieldCellY(0);
   }
 });
