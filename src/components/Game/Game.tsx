@@ -28,12 +28,12 @@ const Game = () => {
         y: positionY,
         directionX: directionX,
         directionY: directionY,
-        maxLength: startSnakeLength,
-      })
+      });
 
       if (snake.length > startSnakeLength) {
         snake.pop();
       }
+
       if (positionX > gameZone) {
         setPositionX(0);
       } else if (positionX < 0) {
@@ -65,24 +65,23 @@ const Game = () => {
     }
   }, [positionX, positionY]);
 
-document.addEventListener('keydown', function(event) {
+window.addEventListener('keydown', function(event) {
   if (event.code === "ArrowUp" && snake[0].directionY === 0) {
     setDirectionY(-oneCellSize);
     setDirectionX(0);
-    console.log(snake)
   }
 
-  else if (event.code === "ArrowDown" && snake[0].directionY === 0) {
+  if (event.code === "ArrowDown" && snake[0].directionY === 0) {
     setDirectionY(oneCellSize);
     setDirectionX(0);
   }
 
-  else if (event.code === "ArrowLeft" && snake[0].directionX === 0) {
+  if (event.code === "ArrowLeft" && snake[0].directionX === 0) {
     setDirectionX(-oneCellSize);
     setDirectionY(0);
   }
 
-  else if (event.code === "ArrowRight" && snake[0].directionX === 0) {
+  if (event.code === "ArrowRight" && snake[0].directionX === 0) {
     setDirectionX(oneCellSize);
     setDirectionY(0);
   }

@@ -6,5 +6,4 @@ export const snake = [{
   y: 0,
   directionX: oneCellSize,
   directionY: 0,
-  maxLength: startSnakeLength,
 }];
