@@ -13,6 +13,7 @@ function Main() {
         Start
         </p>
       </Link>
+
     </main>
   );
 }

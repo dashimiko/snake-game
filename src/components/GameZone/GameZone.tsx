@@ -2,11 +2,19 @@ import {useRef, useEffect, useState} from 'react';
 import {
   oneCellSize,
   startSnakeLength,
-  gameZone,
-  snake,
+  gameZoneSize,
+  snakeObj,
 } from '../../utils/constants';
 
-const Game = () => {
+import Snake from '../../classes/Snake';
+
+const song = new Snake('Start Over', 'Any Given Day');
+const song2 = new Snake('Bitter End', 'The Veer Union');
+
+console.log(song)
+console.log(song2)
+
+const GameZone = () => {
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const canvasCtxRef = useRef<CanvasRenderingContext2D | null>(null);
@@ -23,26 +31,26 @@ const Game = () => {
       setPositionX(positionX + directionX);
       setPositionY(positionY + directionY);
 
-      snake.unshift({
+      snakeObj.unshift({
         x: positionX,
         y: positionY,
         directionX: directionX,
         directionY: directionY,
       });
 
-      if (snake.length > startSnakeLength) {
-        snake.pop();
+      if (snakeObj.length > startSnakeLength) {
+        snakeObj.pop();
       }
 
-      if (positionX > gameZone) {
+      if (positionX === gameZoneSize) {
         setPositionX(0);
       } else if (positionX < 0) {
-        setPositionX(gameZone);
+        setPositionX(gameZoneSize - oneCellSize);
       }
-      if (positionY > gameZone) {
+      if (positionY === gameZoneSize) {
         setPositionY(0);
       } else if (positionY < 0) {
-        setPositionY(gameZone);
+        setPositionY(gameZoneSize - oneCellSize);
       }
     }, 100);
 
@@ -58,30 +66,30 @@ const Game = () => {
       ctx!.fillStyle = `#3FFE1A`;
       ctx!.strokeStyle = `#0b0c0c`;
       ctx!.lineWidth=2;
-      snake.forEach(function({x,y}) {
-        ctx!.fillRect(x, y, 15, 15);
-        ctx!.strokeRect(x, y, 15, 15);
+      snakeObj.forEach(function({x,y}) {
+        ctx!.fillRect(x, y, oneCellSize, oneCellSize);
+        ctx!.strokeRect(x, y, oneCellSize, oneCellSize);
       });
     }
   }, [positionX, positionY]);
 
 window.addEventListener('keydown', function(event) {
-  if (event.code === "ArrowUp" && snake[0].directionY === 0) {
+  if (event.code === "ArrowUp" && snakeObj[0].directionY === 0) {
     setDirectionY(-oneCellSize);
     setDirectionX(0);
   }
 
-  if (event.code === "ArrowDown" && snake[0].directionY === 0) {
+  if (event.code === "ArrowDown" && snakeObj[0].directionY === 0) {
     setDirectionY(oneCellSize);
     setDirectionX(0);
   }
 
-  if (event.code === "ArrowLeft" && snake[0].directionX === 0) {
+  if (event.code === "ArrowLeft" && snakeObj[0].directionX === 0) {
     setDirectionX(-oneCellSize);
     setDirectionY(0);
   }
 
-  if (event.code === "ArrowRight" && snake[0].directionX === 0) {
+  if (event.code === "ArrowRight" && snakeObj[0].directionX === 0) {
     setDirectionX(oneCellSize);
     setDirectionY(0);
   }
@@ -97,4 +105,4 @@ window.addEventListener('keydown', function(event) {
   );
 }
 
-export default Game;
+export default GameZone;
