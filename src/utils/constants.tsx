@@ -1,7 +1,7 @@
 export const oneCellSize = 16;
 export const startSnakeLength = 5;
 export const gameZoneSize = 400;
-export const snakeObj = [{
+export const snakeBody = [{
   x: 0,
   y: 0,
   directionX: oneCellSize,

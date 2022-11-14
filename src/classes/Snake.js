@@ -17,11 +17,10 @@ export default class Snake {
     this._moveSnakeHead();
     this._x = this._x + this._directionX;
     this._y = this._y + this._directionY;
-    this._crossWalls()
+    this._crossWalls();
   }
 
   _moveSnakeHead = () => {
-
     this.snake.unshift({
       x: this._x,
       y: this._y,
@@ -34,7 +33,6 @@ export default class Snake {
   };
 
   _crossWalls = () => {
-
     if (this._x === gameZoneSize) {
       this._x = 0;
     } else if (this._x < 0) {
@@ -48,23 +46,19 @@ export default class Snake {
   }
 
   addListener = () => {
-
     window.addEventListener('keydown', (event) => {
       if (event.code === "ArrowUp" && this._directionY === 0) {
         this._directionY = -oneCellSize;
         this._directionX = 0;
       }
-
       if (event.code === "ArrowDown" && this._directionY === 0) {
         this._directionY = oneCellSize;
         this._directionX = 0;
       }
-
       if (event.code === "ArrowLeft" && this._directionX === 0) {
         this._directionX = -oneCellSize;
         this._directionY = 0;
       }
-
       if (event.code === "ArrowRight" && this._directionX === 0) {
         this._directionX = oneCellSize;
         this._directionY = 0;
