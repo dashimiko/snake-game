@@ -2,15 +2,19 @@ import {startSnakeLength,oneCellSize,gameZoneSize} from '../utils/constants';
 
 export default class Snake {
 
-  constructor(snake, canvasRef, canvasCtxRef) {
+  _x: number;
+  _y: number;
+  _directionX: number;
+  _directionY: number;
+  snake: any[];
+
+  constructor(snake: any[]) {
 
     this.snake = snake;
     this._x = snake[0].x;
     this._y = snake[0].y;
     this._directionX = snake[0].directionX;
     this._directionY = snake[0].directionY;
-    this.canvasRef = canvasRef;
-    this.canvasCtxRef = canvasCtxRef;
   };
 
   moveSnake = () => {
@@ -65,19 +69,4 @@ export default class Snake {
       }
     });
   }
-
-  renderCanvas = () => {
-    if (this.canvasRef.current) {
-      this.canvasCtxRef.current = this.canvasRef.current.getContext('2d');
-      const ctx = this.canvasCtxRef.current;
-      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
-      ctx.fillStyle = `#3FFE1A`;
-      ctx.strokeStyle = `#0b0c0c`;
-      ctx.lineWidth=2;
-      this.snake.forEach(function({x,y}) {
-        ctx.fillRect(x, y, oneCellSize, oneCellSize);
-        ctx.strokeRect(x, y, oneCellSize, oneCellSize);
-      })
-    }
-  };
 };
