@@ -1,14 +1,21 @@
 import {startSnakeLength,oneCellSize,gameZoneSize} from '../utils/constants';
 
+type snakeObject = {
+  x: number;
+  y: number;
+  directionX: number;
+  directionY: number;
+}
+
 export default class Snake {
 
   _x: number;
   _y: number;
   _directionX: number;
   _directionY: number;
-  snake: any[];
+  snake: snakeObject[];
 
-  constructor(snake: any[]) {
+  constructor(snake: snakeObject[]) {
 
     this.snake = snake;
     this._x = snake[0].x;
