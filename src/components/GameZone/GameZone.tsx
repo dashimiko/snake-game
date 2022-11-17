@@ -1,12 +1,12 @@
 import {useRef, useEffect} from 'react';
-import {snakeBody, oneCellSize} from '../../utils/constants';
-import Snake from '../../classes/Snake';
+import {SNAKE_BODY, ONE_CELL_SIZE} from '../../utils/constants';
+import Snake from '../Snake/Snake';
 
 const GameZone = () => {
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const canvasCtxRef = useRef<CanvasRenderingContext2D | null>(null);
-  const snake = new Snake(snakeBody);
+  const snake = new Snake(SNAKE_BODY);
 
   useEffect(() => {
 
@@ -19,11 +19,16 @@ const GameZone = () => {
         ctx!.fillStyle = `#3FFE1A`;
         ctx!.strokeStyle = `#0b0c0c`;
         ctx!.lineWidth=2;
-        snakeBody.forEach(function({x,y}) {
-          ctx!.fillRect(x, y, oneCellSize, oneCellSize);
-          ctx!.strokeRect(x, y, oneCellSize, oneCellSize);
+        SNAKE_BODY.forEach(function({x,y}) {
+          ctx!.fillRect(x, y, ONE_CELL_SIZE, ONE_CELL_SIZE);
+          ctx!.strokeRect(x, y, ONE_CELL_SIZE, ONE_CELL_SIZE);
         })
       }
+
+      if (snake.isSnakeEatItself()) {
+        clearInterval(interval)
+      }
+
     }, 100);
 
     return () => clearInterval(interval);
