@@ -8,7 +8,7 @@ type snakeObject = {
   size: number;
 };
 
-export default class Snake {
+export class Snake {
 
   _x: number;
   _y: number;
@@ -60,14 +60,14 @@ export default class Snake {
     }
   };
 
+  //#FIXME это нужно перенести в класс game
   isSnakeEatItself = () => {
-    const result = this.snake.slice(1).find(item => this._x === item.x && this._y === item.y ? true : false);
-    if (result === undefined) {
-      return false
-    } else {
-      return true
-    }
+    return this.snake.slice(1).some(item => this._x === item.x && this._y === item.y);
   }
+
+  lengthenSnake = () => {
+    this._size += 1;
+  }//#FIXME это нужно перенести в класс game
 
   _changeDirection = (event: KeyboardEvent) => {
     if (event.code === "ArrowUp" && this._directionY === 0) {

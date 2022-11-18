@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-function Main() {
+export function Main() {
 
   return (
     <main className="App_main">
@@ -16,6 +16,4 @@ function Main() {
 
     </main>
   );
-}
-
-export default Main;
+};

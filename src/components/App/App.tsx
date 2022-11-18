@@ -1,8 +1,8 @@
 import React from 'react';
 import '../../pages/index.scss';
-import Main from '../Main/Main';
+import {Main} from '../Main/Main';
 import {Route, Switch} from 'react-router-dom';
-import GameZone from '../GameZone/GameZone'
+import {GameZone} from '../GameZone/GameZone';
 
 function App() {
 
