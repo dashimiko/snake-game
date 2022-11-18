@@ -1,21 +1,24 @@
 import {useRef, useEffect} from 'react';
 import {SNAKE_BODY,ONE_CELL_SIZE, APPLE} from '../../utils/constants';
-import {Snake} from '../Snake/Snake';
 import {Game} from '../Game/Game';
+import {Snake} from '../Snake/Snake'
 
 export const GameZone = () => {
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const canvasCtxRef = useRef<CanvasRenderingContext2D | null>(null);
+  const game = new Game(APPLE, SNAKE_BODY);
   const snake = new Snake(SNAKE_BODY);
-  const game = new Game(APPLE);
 
-  game.showApple()
+  game.showApple();
 
   useEffect(() => {
 
     const interval = setInterval(() => {
+
       snake.moveSnake();
+      game.eatApple();
+
       if (canvasRef.current) {
         canvasCtxRef.current = canvasRef.current.getContext('2d');
         const ctx = canvasCtxRef.current;
@@ -30,11 +33,6 @@ export const GameZone = () => {
           ctx!.strokeRect(x, y, ONE_CELL_SIZE, ONE_CELL_SIZE);
         })
       };
-
-      if (SNAKE_BODY[0].x === APPLE.x && SNAKE_BODY[0].y === APPLE.y) {
-        snake.lengthenSnake();
-        game.showApple();
-      }//#FIXME эту проверку нужно сделать методом и перенести в класс game
     }, 100);
 
     return () => clearInterval(interval);

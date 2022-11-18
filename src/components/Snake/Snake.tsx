@@ -14,7 +14,6 @@ export class Snake {
   _y: number;
   _directionX: number;
   _directionY: number;
-  _size: number;
   snake: snakeObject[];
 
   constructor(snake: snakeObject[]) {
@@ -24,7 +23,6 @@ export class Snake {
     this._y = snake[0].y;
     this._directionX = snake[0].directionX;
     this._directionY = snake[0].directionY;
-    this._size = snake[0].size;
   };
 
   moveSnake = () => {
@@ -40,9 +38,9 @@ export class Snake {
       y: this._y,
       directionX: this._directionX,
       directionY: this._directionY,
-      size: this._size,
+      size: this.snake[0].size,
     });
-    if (this.snake.length > this._size) {
+    if (this.snake.length > this.snake[0].size) {
       this.snake.pop();
     }
   };
@@ -59,15 +57,6 @@ export class Snake {
       this._y = GAME_ZONE_SIZE - ONE_CELL_SIZE;
     }
   };
-
-  //#FIXME это нужно перенести в класс game
-  isSnakeEatItself = () => {
-    return this.snake.slice(1).some(item => this._x === item.x && this._y === item.y);
-  }
-
-  lengthenSnake = () => {
-    this._size += 1;
-  }//#FIXME это нужно перенести в класс game
 
   _changeDirection = (event: KeyboardEvent) => {
     if (event.code === "ArrowUp" && this._directionY === 0) {
