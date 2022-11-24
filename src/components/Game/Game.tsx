@@ -1,3 +1,5 @@
+import {ONE_CELL_SIZE} from '../../utils/constants';
+
 type appleObject = {
   x: number;
   y: number;
@@ -15,10 +17,14 @@ export class Game {
 
   apple: appleObject;
   snake: snakeObject[];
+  canvasRef: any;
+  canvasCtxRef: any;
 
-  constructor(apple: appleObject, snake: snakeObject[]) {
+  constructor(apple: appleObject, snake: snakeObject[], canvasRef:any, canvasCtxRef: any) {
     this.apple = apple;
     this.snake = snake;
+    this.canvasRef = canvasRef;
+    this.canvasCtxRef = canvasCtxRef;
   };
 
   _getRandomInt = () => {
@@ -44,4 +50,21 @@ export class Game {
       this.showApple();
     }
   };
+
+  renderCanvas = () => {
+    if (this.canvasRef.current) {
+      this.canvasCtxRef.current = this.canvasRef.current.getContext('2d');
+      const ctx = this.canvasCtxRef.current;
+      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+      ctx.fillStyle = 'red';
+      ctx.fillRect(this.apple.x, this.apple.y, ONE_CELL_SIZE - 2, ONE_CELL_SIZE - 2);
+      ctx.fillStyle = `#3FFE1A`;
+      ctx.strokeStyle = `#0b0c0c`;
+      ctx.lineWidth=2;
+      this.snake.forEach(function({x,y}) {
+        ctx.fillRect(x, y, ONE_CELL_SIZE, ONE_CELL_SIZE);
+        ctx.strokeRect(x, y, ONE_CELL_SIZE, ONE_CELL_SIZE);
+      })
+    };
+  }
 };
