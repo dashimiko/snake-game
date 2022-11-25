@@ -1,7 +1,7 @@
 import {useRef, useEffect} from 'react';
 import {SNAKE_BODY, APPLE} from '../../utils/constants';
 import {Game} from '../Game/Game';
-import {Snake} from '../Snake/Snake'
+import {Snake} from '../Snake/Snake';
 
 export const GameZone = () => {
 
@@ -14,12 +14,20 @@ export const GameZone = () => {
 
   useEffect(() => {
 
-    const interval = setInterval(() => {
+    //game.renderCanvas();
+
+    const intervalGame = setInterval(() => {
       snake.moveSnake();
       game.renderCanvas();
       game.eatApple();
+
+      if(game.isSnakeEatItself()){
+        clearInterval(intervalGame)
+      }
+
     }, 100);
-    return () => clearInterval(interval);
+
+    return () => clearInterval(intervalGame);
   }, []);
 
   snake.addListener();

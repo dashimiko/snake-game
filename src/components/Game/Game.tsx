@@ -20,7 +20,7 @@ export class Game {
   canvasRef: any;
   canvasCtxRef: any;
 
-  constructor(apple: appleObject, snake: snakeObject[], canvasRef:any, canvasCtxRef: any) {
+  constructor(apple: appleObject, snake: snakeObject[], canvasRef: any, canvasCtxRef: any) {
     this.apple = apple;
     this.snake = snake;
     this.canvasRef = canvasRef;
@@ -37,7 +37,9 @@ export class Game {
   };
 
   isSnakeEatItself = () => {
-    return this.snake.slice(1).some(item => this.snake[0].x === item.x && this.snake[0].y === item.y);
+    if(this.snake.length > 5) {
+      return this.snake.slice(1).some(item => this.snake[0].x === item.x && this.snake[0].y === item.y);
+    }
   };
 
   _lengthenSnake = () => {
