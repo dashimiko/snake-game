@@ -1,4 +1,4 @@
-import {useRef, useEffect} from 'react';
+import {useRef, useEffect, useState} from 'react';
 import {SNAKE_BODY, APPLE} from '../../utils/constants';
 import {Game} from '../Game/Game';
 import {Snake} from '../Snake/Snake';
@@ -14,20 +14,18 @@ export const GameZone = () => {
 
   useEffect(() => {
 
-    //game.renderCanvas();
+    game.renderCanvas();
 
     const intervalGame = setInterval(() => {
-      snake.moveSnake();
-      game.renderCanvas();
-      game.eatApple();
-
-      if(game.isSnakeEatItself()){
-        clearInterval(intervalGame)
+      if(!game.isSnakeEatItself()){
+        snake.moveSnake();
+        game.renderCanvas();
+        game.eatApple();
       }
-
     }, 100);
 
     return () => clearInterval(intervalGame);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   snake.addListener();

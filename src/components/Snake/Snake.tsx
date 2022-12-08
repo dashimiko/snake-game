@@ -26,10 +26,10 @@ export class Snake {
   };
 
   moveSnake = () => {
-    this._moveSnakeHead();
     this._x = this._x + this._directionX;
     this._y = this._y + this._directionY;
     this._crossWalls();
+    this._moveSnakeHead();
   };
 
   _moveSnakeHead = () => {
