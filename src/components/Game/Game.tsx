@@ -63,10 +63,11 @@ export class Game {
       ctx.fillStyle = `#3FFE1A`;
       ctx.strokeStyle = `#0b0c0c`;
       ctx.lineWidth=2;
-      this.snake.forEach(function({x,y}) {
+      this.snake.forEach(({x,y}) => {
         ctx.fillRect(x, y, ONE_CELL_SIZE, ONE_CELL_SIZE);
         ctx.strokeRect(x, y, ONE_CELL_SIZE, ONE_CELL_SIZE);
       })
     };
+    //console.log(this.snake)
   }
 };

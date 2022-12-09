@@ -17,11 +17,14 @@ export const GameZone = () => {
     game.renderCanvas();
 
     const intervalGame = setInterval(() => {
-      if(!game.isSnakeEatItself()){
-        snake.moveSnake();
-        game.renderCanvas();
-        game.eatApple();
-      }
+      if(game.isSnakeEatItself()){
+        snake.newSnake();
+        console.log(SNAKE_BODY);
+    }
+      snake.moveSnake();
+      game.renderCanvas();
+      game.eatApple();
+
     }, 100);
 
     return () => clearInterval(intervalGame);

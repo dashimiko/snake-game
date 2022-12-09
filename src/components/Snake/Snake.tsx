@@ -15,12 +15,14 @@ export class Snake {
   _directionX: number;
   _directionY: number;
   snake: snakeObject[];
+  _size: number;
 
   constructor(snake: snakeObject[]) {
 
     this.snake = snake;
     this._x = snake[0].x;
     this._y = snake[0].y;
+    this._size = snake[0].size;
     this._directionX = snake[0].directionX;
     this._directionY = snake[0].directionY;
   };
@@ -30,7 +32,19 @@ export class Snake {
     this._y = this._y + this._directionY;
     this._crossWalls();
     this._moveSnakeHead();
+    //console.log(this.snake)
   };
+
+  newSnake = () => {
+    this._x = -16;
+    this._y = 0;
+    this.snake[0].size = 4;
+    this._size = 4;
+    this._directionX = 16;
+    this._directionY = 0;
+    console.log(this._size)
+    console.log(this.snake[0].size)
+  }
 
   _moveSnakeHead = () => {
     this.snake.unshift({
