@@ -1,108 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Trispace:wght@700&display=swap');
+.canvas {
+  cursor: none;
+}
 
-$app-background-color: #0b0c0c;
-$app-neonGreen-color: #3FFE1A;
-$app-red-color: red;
-
-.App {
-  background-color: $app-background-color;
+.game-zone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100vw;
   height: 100vh;
 }
 
-.App_main {
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  flex-direction: column;
-
-  .glitch {
-    position: relative;
-    color: #fff;
-    font-family: 'Trispace', sans-serif;
-    font-weight: 600;
-    font-size: 80px;
-    padding: 30px;
-
-    &:before,
-    &:after {
-      content: "Snake Game";
-      color: #fff;
-      position: absolute;
-      top: 0;
-      overflow: hidden;
-      padding: 30px;
-    }
-
-    &:before {
-      left: -3px;
-      text-shadow: -3px 0 $app-neonGreen-color;
-      animation: glitch-before 2s linear 0s infinite alternate;
-    }
-
-    &:after {
-      left: -3px;
-      text-shadow: -3px 0 $app-red-color;
-      animation: glitch-after 2s linear 0s infinite alternate;
-    }
-  }
-  .start_button {
-    background-color: $app-neonGreen-color;
-    color: black;
-    border: none;
-    border-radius: 10px;
-    transition: all .1s linear;
-    text-decoration: none;
-    width: 120px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 5px;
-  }
-  .start_button_text {
-    font-family: 'Trispace', sans-serif;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    font-weight: 600;
-    font-size: 20px;
-  }
-  .start_button:hover {
-    box-shadow: 0px 4px 20px rgba(252, 228, 8, 0.4);
-  }
+.game-zone_box{
+  border: 1px solid white;
+  width: 400px;
+  height: 400px;
 }
 
-@keyframes glitch-before {
-  $steps: 20;
-  @for $i from 0 through $steps {
-    #{percentage($i*(1/$steps))} {
-      clip: rect(random(150) + px, 780px, random(150) + px, 30px);
-    }
-  }
+.game-zone__game-over{
+  font-size: 5em;
+  margin-top: 80px;
 }
 
-@keyframes glitch-after {
-  $steps: 20;
-  @for $i from 0 through $steps {
-    #{percentage($i*(1/$steps))} {
-      clip: rect(random(150) + px, 780px, random(150) + px, 30px);
-    }
-  }
+.game-zone__again{
+  margin: 30px auto 0;
 }
-
-@media screen and (max-width: 580px) {
-  .App_main {
-    .glitch {
-      font-weight: 400;
-      font-size: 50px;
-    }
-  }
-}
-
-/*.no-cursor,
-.no-cursor * {
-  cursor: none;
-}*/

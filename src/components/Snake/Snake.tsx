@@ -1,4 +1,4 @@
-import {ONE_CELL_SIZE,GAME_ZONE_SIZE} from '../../utils/constants';
+import {ONE_CELL_SIZE,GAME_ZONE_SIZE, DEFAULT_SNAKE_LENGTH,SNAKE_BODY} from '../../utils/constants';
 
 type snakeObject = {
   x: number;
@@ -32,18 +32,18 @@ export class Snake {
     this._y = this._y + this._directionY;
     this._crossWalls();
     this._moveSnakeHead();
-    //console.log(this.snake)
   };
 
   newSnake = () => {
     this._x = -16;
     this._y = 0;
-    this.snake[0].size = 4;
-    this._size = 4;
+    this.snake[0].size = DEFAULT_SNAKE_LENGTH;
+    this._size = DEFAULT_SNAKE_LENGTH;
     this._directionX = 16;
     this._directionY = 0;
     console.log(this._size)
     console.log(this.snake[0].size)
+    console.log(SNAKE_BODY)
   }
 
   _moveSnakeHead = () => {

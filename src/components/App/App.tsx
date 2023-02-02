@@ -1,8 +1,8 @@
 import React from 'react';
 import '../../pages/index.scss';
-import {Main} from '../Main/Main';
+import {StartScreen} from '../StartScreen/StartScreen';
 import {Route, Switch} from 'react-router-dom';
-import {GameZone} from '../GameZone/GameZone';
+import {Main} from '../Main/Main';
 
 function App() {
 
@@ -10,10 +10,10 @@ function App() {
     <div className="App">
       <Switch>
         <Route exact path='/'>
-          <Main/>
+          <StartScreen/>
         </Route>
         <Route path='/game'>
-          <GameZone/>
+          <Main/>
         </Route>
       </Switch>
     </div>
