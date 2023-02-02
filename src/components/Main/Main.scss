@@ -1,0 +1,26 @@
+.canvas {
+  cursor: none;
+}
+
+.game-zone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.game-zone_box{
+  border: 1px solid white;
+  width: 400px;
+  height: 400px;
+}
+
+.game-zone__game-over{
+  font-size: 5em;
+  margin-top: 80px;
+}
+
+.game-zone__again{
+  margin: 30px auto 0;
+}
