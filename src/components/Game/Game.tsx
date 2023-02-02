@@ -42,6 +42,15 @@ export class Game {
     }
   };
 
+  cutSnake = () => {
+    this.snake[0].size = 4;
+    this.snake.length = 4;
+    //this.snake[0].x = -16;
+    //this.snake[0].y = 0;
+    //this.snake[0].directionX = 16;
+    //this.snake[0].directionY = 0;
+  }
+
   _lengthenSnake = () => {
     this.snake[0].size += 1;
   };

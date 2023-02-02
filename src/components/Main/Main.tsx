@@ -13,6 +13,13 @@ export const Main = () => {
 
   function handleButtonClick() {
     setGameOver(false);
+    runNewSnake();
+    //game.renderCanvas();
+  }
+
+  function runNewSnake() {
+    game.cutSnake();
+    snake.newSnake();
   }
 
   game.showApple();
@@ -21,19 +28,18 @@ export const Main = () => {
 
     game.renderCanvas();
 
-    const intervalGame = setInterval(() => {
-      if(game.isSnakeEatItself()){
-        setGameOver(true);
-        SNAKE_BODY[0].size = 4;
-        snake.newSnake();
+    if(!gameOver){
+      const intervalGame = setInterval(() => {
+        snake.moveSnake();
+        game.eatApple();
+        game.renderCanvas();
+        if(game.isSnakeEatItself()){
+          setGameOver(true);
+        }
+      }, 100);
+      return () => clearInterval(intervalGame);
     }
-      snake.moveSnake();
-      game.renderCanvas();
-      game.eatApple();
 
-    }, 100);
-
-    return () => clearInterval(intervalGame);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

@@ -31,3 +31,15 @@ export const APPLE = {
   x: 96,
   y: 320,
 }
+
+type snakeObject = {
+  x: number;
+  y: number;
+  directionX: number;
+  directionY: number;
+  size: number;
+};
+
+export const countLenght = (arr: snakeObject[]) => {
+  arr.length = 4;
+}
