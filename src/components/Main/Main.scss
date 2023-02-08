@@ -39,5 +39,9 @@
 .snake-cell{
   width: 16px;
   height: 16px;
-  border: 1px solid red;
+  border: 1px solid grey;
+}
+
+.snake-cell_active{
+  background-color: lime;
 }

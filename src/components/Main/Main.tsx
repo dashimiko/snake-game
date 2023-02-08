@@ -21,7 +21,7 @@ export const Main = () => {
         </>
         :
         <div className="snake-field">
-          <div className="snake-cell"></div>
+          <div className="snake-cell snake-cell_active"></div>
           <div className="snake-cell"></div>
           <div className="snake-cell"></div>
           <div className="snake-cell"></div>
